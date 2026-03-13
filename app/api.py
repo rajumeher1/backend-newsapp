@@ -1,8 +1,7 @@
 # app/api.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from main import run
-from db import collection
+from app.db import collection
 
 app = FastAPI(title="News Fetcher API")
 
@@ -24,7 +23,6 @@ def fetch_news():
     duplicate check, and save new articles to MongoDB.
     """
     try:
-        run()
         articles = list(collection.find().sort("publishedAt", -1).limit(130))
         for article in articles:
             article["_id"] = str(article["_id"])

@@ -1,6 +1,6 @@
 # app/rss_fetcher.py
 import feedparser
-from config import HEADERS
+from app.config import HEADERS
 import requests
 
 def get_feed_entries(rss_url, limit=5):

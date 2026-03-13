@@ -1,5 +1,5 @@
 # app/paraphraser.py
-from config import client
+from app.config import client
 
 
 model = "Qwen/Qwen2.5-7B-Instruct"

@@ -1,11 +1,11 @@
 # app/main.py
 import time
-from config import RSS_FEEDS
-from rss_fetcher import get_feed_entries, get_image_url
-from paraphraser import paraphraser
-from summarizer import summarizer
-from embeddings import create_embedding, is_duplicate
-from db import get_existing_articles, save_articles
+from app.config import RSS_FEEDS
+from app.rss_fetcher import get_feed_entries, get_image_url
+from app.paraphraser import paraphraser
+from app.summarizer import summarizer
+from app.embeddings import create_embedding, is_duplicate
+from app.db import get_existing_articles, save_articles
 import numpy as np
 from datetime import datetime, timezone
 

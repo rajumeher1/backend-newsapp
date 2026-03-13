@@ -2,7 +2,7 @@
 import requests
 import time
 import trafilatura
-from config import HEADERS, client
+from app.config import HEADERS, client
 
 
 def summarizer(url: str):
