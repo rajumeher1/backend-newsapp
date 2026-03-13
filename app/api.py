@@ -7,7 +7,7 @@ app = FastAPI(title="News Fetcher API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://newsapp.vercel.app"],
+    allow_origins=["https://backend-newsapp-3x9i.onrender.com"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
