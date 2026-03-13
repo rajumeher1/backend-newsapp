@@ -5,12 +5,9 @@ trafilatura
 lxml_html_clean
 sentence-transformers
 scikit-learn
-transformers
 huggingface-hub
 numpy
 pymongo
 fastapi
 uvicorn
 python-dotenv
-tiktoken
-protobuf
