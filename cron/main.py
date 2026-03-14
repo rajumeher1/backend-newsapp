@@ -19,7 +19,7 @@ def run():
 
     # Iterate through RSS feeds
     for source, url in RSS_FEEDS.items():
-        entries = get_feed_entries(url, limit=3)
+        entries = get_feed_entries(url)
 
         for item in entries:
             link = item.get("link")
@@ -57,9 +57,10 @@ def run():
             existing_embeddings.append(embedding)  # Update memory for duplicates
 
             # Optional rate limiting
-            time.sleep(5)
+            time.sleep(10)
 
     # Save new articles to MongoDB
+    # print(new_articles)
     save_articles(new_articles)
     print(f"New articles added: {len(new_articles)}")
     print(f"Total articles in DB: {len(existing_articles) + len(new_articles)}")

@@ -3,7 +3,7 @@ import feedparser
 from app.config import HEADERS
 import requests
 
-def get_feed_entries(rss_url, limit=5):
+def get_feed_entries(rss_url):
     """
     Fetch RSS feed entries from a given URL.
     
@@ -14,16 +14,12 @@ def get_feed_entries(rss_url, limit=5):
         list of feedparser entries
     """
     try:
-        response = requests.get(rss_url, headers=HEADERS, timeout=20)
+        response = requests.get(rss_url, headers=HEADERS)
         feed = feedparser.parse(response.content)
 
-        # Sort by published date (newest first)
-        entries_sorted = sorted(
-            feed.entries,
-            key=lambda e: getattr(e, "published_parsed", None),
-            reverse=True
-        )
-        return entries_sorted[:limit]
+        sorted_entries = sorted(feed.entries, key = lambda e: getattr(e, "published_parsed", None), reverse=True)
+
+        return sorted_entries[:3]
 
     except Exception as e:
         print(f"Error fetching RSS feed {rss_url}: {e}")
