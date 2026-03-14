@@ -2,14 +2,14 @@ name: RSS Cron
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/30 * * * *"  # Every 30 minutes
   workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/${{ github.repository }}/rss-runner:latest
+      image: ghcr.io/${{ github.repository_owner }}/rss-runner:latest
 
     steps:
       - name: Run RSS Fetcher
