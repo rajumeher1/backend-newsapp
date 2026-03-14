@@ -1,6 +1,6 @@
 # cron/main.py
 import time
-from app.config import RSS_FEEDS
+from fetchnews.config import RSS_FEEDS
 from fetchnews.rss_fetcher import get_feed_entries, get_image_url
 from fetchnews.paraphraser import paraphraser
 from fetchnews.summarizer import summarizer

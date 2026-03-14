@@ -1,5 +1,5 @@
 # app/paraphraser.py
-from app.config import client
+from fetchnews.config import CLIENT
 
 
 model = "Qwen/Qwen2.5-7B-Instruct"
@@ -19,7 +19,7 @@ def paraphraser(title: str) -> str:
     ]
 
     try:
-        response = client.chat.completions.create(
+        response = CLIENT.chat.completions.create(
             model = model,
             messages = messages,
             temperature = 0.8

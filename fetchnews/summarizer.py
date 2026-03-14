@@ -2,7 +2,7 @@
 import requests
 import time
 import trafilatura
-from app.config import HEADERS, client
+from fetchnews.config import HEADERS, CLIENT
 
 
 def summarizer(url: str):
@@ -27,7 +27,7 @@ def summarizer(url: str):
         # Retry mechanism
         for _ in range(3):
             try:
-                result = client.summarization(
+                result = CLIENT.summarization(
                     content,
                     model="facebook/bart-large-cnn"
                 )

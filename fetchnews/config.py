@@ -1,6 +1,7 @@
 # app/config.py
 import os
 from dotenv import load_dotenv
+from huggingface_hub import InferenceClient
 
 
 load_dotenv()  # Load variables from .env
@@ -34,3 +35,9 @@ HEADERS = {
 
 # Hugging Face API token
 HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+
+# Initialize Hugging Face inference client
+CLIENT = InferenceClient(
+    provider="auto",
+    api_key=HUGGINGFACE_API_TOKEN
+)
