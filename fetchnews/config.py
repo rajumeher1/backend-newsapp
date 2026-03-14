@@ -21,6 +21,7 @@ RSS_FEEDS = {
     "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
     "The Economic Times": "https://economictimes.indiatimes.com/rssfeedsdefault.cms",
     "ABP Live": "https://news.abplive.com/home/feed",
+    "News18": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml"
 }
 
 # HTTP headers for requests
