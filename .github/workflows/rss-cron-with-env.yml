@@ -3,8 +3,8 @@ name: RSS Fetcher Cron
 on:
   schedule:
     # Runs at 17 and 47 minutes past each hour from 6 to 23
-    - cron: "17 6-23 * * *"
-    - cron: "47 6-22 * * *"
+    - cron: "17 0-17 * * *"
+    - cron: "47 1-17 * * *"
   workflow_dispatch:
 
 jobs:
