@@ -1,8 +1,9 @@
 name: Build Docker Image
 
 on:
-  push:
-    branches: [main]  # Build the image whenever you push to main
+  workflow_dispatch:
+  # push:
+    # branches: [main]  # Build the image whenever you push to main
 
 jobs:
   build:
