@@ -19,7 +19,6 @@ def paraphraser(title: str) -> str:
         response = client.chat.completions.create(
             model = model,
             messages = messages,
-            max_tokens = 25,
             temperature = 0.8
         )
 
