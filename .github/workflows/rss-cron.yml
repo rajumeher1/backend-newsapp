@@ -24,6 +24,7 @@ jobs:
 
       - name: Run RSS Fetcher
         env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          HUGGINGFACE_API_TOKEN: $ {{ secrets.HUGGINGFACE_API_TOKEN }}
+          MONGO_URI: ${{ secrets.MONGODB_URI }}
         run: |
           python -m cron.main
