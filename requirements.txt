@@ -8,5 +8,4 @@ scikit-learn
 huggingface-hub
 numpy
 pymongo
-uvicorn
 python-dotenv

@@ -2,7 +2,7 @@ name: RSS Fetcher Cron
 
 on:
   schedule:
-    - cron: "*/15 * * * *" # every 14 minutes
+    - cron: "*/30 * * * *" # every 30 minutes
   workflow_dispatch: # allows manual trigger
 
 jobs:
