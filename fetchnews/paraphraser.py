@@ -26,7 +26,7 @@ def paraphraser(title: str) -> str:
         )
 
         rewritten = response.choices[0].message.content
-        return rewritten.strip().strip('"')
+        return rewritten.strip()
 
     except Exception as e:
         return f"Error during paraphrasing: {e}"
