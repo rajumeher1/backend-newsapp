@@ -11,7 +11,10 @@ def paraphraser(title: str) -> str:
     """
 
     messages = [
-      {"role": "system", "content": "You are a professional paraphrasing assistant. Rewrite the user's text in english to be different but keep the same meaning. Output only the result."},
+      {"role": "system",
+      "content": '''You are a professional paraphrasing assistant.
+                    Rewrite the user's text in english to be different but keep the same meaning and avoid long title.
+                    Output only the result without a fullstop (.) at the end.'''},
       {"role": "user", "content": title}
     ]
 
