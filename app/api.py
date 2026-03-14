@@ -23,7 +23,7 @@ def fetch_news():
     duplicate check, and save new articles to MongoDB.
     """
     try:
-        articles = list(collection.find().sort("publishedAt", -1).limit(130))
+        articles = list(collection.find().sort("createdAt", -1).limit(130))
         for article in articles:
             article["_id"] = str(article["_id"])
         return articles
