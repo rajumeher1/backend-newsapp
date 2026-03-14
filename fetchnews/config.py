@@ -18,6 +18,9 @@ RSS_FEEDS = {
     "Hindustan Times": "https://www.hindustantimes.com/feeds/rss/latest/rssfeed.xml",
     "Indian Express": "https://indianexpress.com/section/news-today/feed/",
     "The Tribune": "https://publish.tribuneindia.com/newscategory/top-headlines/feed/",
+    "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
+    "The Economic Times": "https://economictimes.indiatimes.com/rssfeedsdefault.cms",
+    "ABP Live": "https://news.abplive.com/home/feed",
 }
 
 # HTTP headers for requests
