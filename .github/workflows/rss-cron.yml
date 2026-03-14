@@ -1,27 +1,43 @@
+# .github/workflows/rss-cron.yml
 name: RSS Fetcher Cron
 
 on:
   schedule:
-    - cron: "*/30 * * * *" # every 30 minutes
-  workflow_dispatch: # allows manual trigger
+    - cron: "*/30 * * * *"   # every 30 minutes
+  workflow_dispatch:
 
 jobs:
   run-rss:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout repository
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      # Setup Python with dependency cache
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: "3.9"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
 
+      # Cache HuggingFace models
+      - name: Cache HuggingFace models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: ${{ runner.os }}-huggingface-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-huggingface-
+
+      # Install dependencies
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Run RSS script
       - name: Run RSS Fetcher
         env:
           HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}

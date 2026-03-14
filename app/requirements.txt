@@ -1,5 +1,4 @@
 fastapi
 pymongo
-huggingface_hub
 uvicorn
 dotenv
