@@ -60,7 +60,6 @@ def run():
             time.sleep(10)
 
     # Save new articles to MongoDB
-    # print(new_articles)
     save_articles(new_articles)
     print(f"New articles added: {len(new_articles)}")
     print(f"Total articles in DB: {len(existing_articles) + len(new_articles)}")
