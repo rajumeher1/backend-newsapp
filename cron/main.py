@@ -1,11 +1,11 @@
-# app/main.py
+# cron/main.py
 import time
 from app.config import RSS_FEEDS
-from app.rss_fetcher import get_feed_entries, get_image_url
-from app.paraphraser import paraphraser
-from app.summarizer import summarizer
-from app.embeddings import create_embedding, is_duplicate
-from app.db import get_existing_articles, save_articles
+from fetchnews.rss_fetcher import get_feed_entries, get_image_url
+from fetchnews.paraphraser import paraphraser
+from fetchnews.summarizer import summarizer
+from fetchnews.embeddings import create_embedding, is_duplicate
+from fetchnews.db import get_existing_articles, save_articles
 import numpy as np
 from datetime import datetime, timezone
 

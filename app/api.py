@@ -1,7 +1,7 @@
 # app/api.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.db import collection
+from db import collection
 
 app = FastAPI(title="News Fetcher API")
 
