@@ -32,6 +32,6 @@ def fetch_news():
         return {"status": "error", "message": str(e)}
 
 
-@app.get("/health", methods=["GET", "HEAD"])
+@app.get("/health")
 def health():
     return {"status": "ok"}
