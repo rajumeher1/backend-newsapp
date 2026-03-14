@@ -30,3 +30,8 @@ def fetch_news():
         # return {"status": "success", "message": "News fetched and saved successfully"}
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
