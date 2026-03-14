@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Set working directory
-WORKDIR /app
+WORKDIR /
 
 # Copy and install dependencies
 COPY requirements.txt .
