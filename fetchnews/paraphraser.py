@@ -22,7 +22,7 @@ def paraphraser(title: str) -> str:
         response = CLIENT.chat.completions.create(
             model = model,
             messages = messages,
-            temperature = 0.2
+            temperature = 0.4
         )
 
         rewritten = response.choices[0].message.content

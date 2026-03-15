@@ -22,8 +22,8 @@ RSS_FEEDS = {
     "ABP Live": "https://news.abplive.com/home/feed",
     "News18": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
     "Times Now": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
-    "Firstpost India": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
-    "Firstpost World": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/world.xml"
+    "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
+    "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/world.xml"
 }
 
 # HTTP headers for requests
