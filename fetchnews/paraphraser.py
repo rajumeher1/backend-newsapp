@@ -10,6 +10,9 @@ def paraphraser(title: str) -> str:
     Paraphrase a news title using T5 model
     """
 
+    if not title:
+            return "No title"
+
     messages = [
       {"role": "system",
       "content": '''You are a professional paraphrasing assistant.
@@ -18,15 +21,22 @@ def paraphraser(title: str) -> str:
       {"role": "user", "content": title}
     ]
 
-    try:
-        response = CLIENT.chat.completions.create(
-            model = model,
-            messages = messages,
-            temperature = 0.4
-        )
+    last_error = None
 
-        rewritten = response.choices[0].message.content
-        return rewritten.strip()
+    for _ in range(2):
 
-    except Exception as e:
-        return f"Error during paraphrasing: {e}"
+        try:
+            response = CLIENT.chat.completions.create(
+                model = model,
+                messages = messages,
+                temperature = 0.4
+            )
+
+            rewritten = response.choices[0].message.content
+            return rewritten.strip()
+
+        except Exception as e:
+            last_error = e
+            time.sleep(5)
+            
+    return "Title unavailable"

@@ -24,7 +24,11 @@ def process_item(item, source, seen_links, existing_embeddings):
             return None
 
         image_url = get_image_url(item)
+
         new_title = paraphraser(title) or title
+
+        if not new_title or new_title in ["No title", "Title unavailable"]:
+            return None
 
         summary = summarizer(link)
 
