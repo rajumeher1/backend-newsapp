@@ -9,3 +9,4 @@ huggingface-hub
 numpy
 pymongo
 python-dotenv
+beautifulsoup4

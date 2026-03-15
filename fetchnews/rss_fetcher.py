@@ -2,6 +2,7 @@
 import feedparser
 from fetchnews.config import HEADERS
 import requests
+from bs4 import BeautifulSoup
 
 def get_feed_entries(rss_url):
     """
@@ -19,7 +20,7 @@ def get_feed_entries(rss_url):
 
         sorted_entries = sorted(feed.entries, key = lambda e: getattr(e, "published_parsed", None), reverse=True)
 
-        return sorted_entries[:1]
+        return sorted_entries[:2]
 
     except Exception as e:
         print(f"Error fetching RSS feed {rss_url}: {e}")
@@ -40,5 +41,13 @@ def get_image_url(item):
 
     if "fullimage" in item and item.fullimage:
         return item.fullimage
+
+    # content:encoded / content
+    if "content" in item and item.content:
+        html = item.content[0].get("value", "")
+        soup = BeautifulSoup(html, "html.parser")
+        img = soup.find("img")
+        if img and img.get("src"):
+            return img["src"]
 
     return None

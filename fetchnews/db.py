@@ -31,4 +31,4 @@ def save_articles(articles):
         return
 
     collection.insert_many(articles)
-    print(f"Inserted {len(articles)} new articles")
+    # print(f"Inserted {len(articles)} new articles")
