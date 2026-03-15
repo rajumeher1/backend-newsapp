@@ -6,6 +6,9 @@ import numpy as np
 # Initialize embedding model
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
+def create_title_embedding(title):
+    return embedding_model.encode(title)
+
 def create_embedding(title, summary):
     """
     Create a semantic embedding for the combination of title and summary.
@@ -17,7 +20,7 @@ def create_embedding(title, summary):
         np.array: embedding vector
     """
     text = title + " " + summary
-    embedding = embedding_model.encode(text)
+    embedding = embedding_model.encode(text, normalize_embeddings=True)
     return embedding
 
 def is_duplicate(new_embedding, existing_embeddings, threshold=0.85):

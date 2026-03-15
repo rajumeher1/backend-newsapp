@@ -1,4 +1,4 @@
-# cron/main.py
+# cron/test.py
 
 import time
 import numpy as np
