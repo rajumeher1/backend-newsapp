@@ -32,7 +32,8 @@ def summarizer(url: str):
                 result = CLIENT.summarization(
                     content,
                     # model="facebook/bart-large-cnn"
-                    model="sshleifer/distilbart-cnn-12-6"
+                    model="sshleifer/distilbart-cnn-12-6",
+                    temperature = 0.5
                 )
                 return result.summary_text.replace("<n>", " ").strip()
 
