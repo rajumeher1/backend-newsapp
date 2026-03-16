@@ -54,7 +54,7 @@ def run():
             seen_links.add(article["link"])
             existing_embeddings.append(np.array(embedding))
 
-            time.sleep(2)  # optional rate limiting
+            time.sleep(5)  # optional rate limiting
 
     # Save new articles to MongoDB
     save_articles(new_articles)
