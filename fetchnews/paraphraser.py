@@ -38,5 +38,7 @@ def paraphraser(title: str) -> str:
         except Exception as e:
             last_error = e
             time.sleep(5)
+
+    print(f'Error for title: {title} - {last_error}')
             
     return "Title unavailable"
