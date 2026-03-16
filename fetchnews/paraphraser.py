@@ -1,9 +1,9 @@
 # app/paraphraser.py
+
+import time
 from fetchnews.config import CLIENT
 
-
 model = "Qwen/Qwen2.5-7B-Instruct"
-
 
 def paraphraser(title: str) -> str:
     """
