@@ -16,8 +16,7 @@ def paraphraser(title: str) -> str:
     messages = [
       {"role": "system",
       "content": '''You are a professional paraphrasing assistant. Rewrite the user's text with different wording
-                    while keeping the same meaning. Limit the output to 20 words. Output only the paraphrased text 
-                    without a full stop at the end.'''},
+                    while keeping the same meaning and avoid long output. Output only the paraphrased text without a full stop at the end.'''},
       {"role": "user", "content": title}
     ]
 
