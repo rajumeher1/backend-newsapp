@@ -3,11 +3,11 @@
 import time
 from fetchnews.config import CLIENT
 
-model = "Qwen/Qwen2.5-7B-Instruct"
+model = "meta-llama/Meta-Llama-3-8B-Instruct:novita"
 
 def paraphraser(title: str) -> str:
     """
-    Paraphrase a news title using T5 model
+    Paraphrase a news title using HF model
     """
 
     if not title:
@@ -15,9 +15,9 @@ def paraphraser(title: str) -> str:
 
     messages = [
       {"role": "system",
-      "content": '''You are a professional paraphrasing assistant.
-                    Rewrite the user's text in english to be different but keep the same meaning and avoid long title.
-                    Output only the result without a fullstop (.) at the end.'''},
+      "content": '''You are a professional paraphrasing assistant. Rewrite the user's text with different wording
+                    while keeping the same meaning. Limit the output to 20 words. Output only the paraphrased text 
+                    without a full stop at the end.'''},
       {"role": "user", "content": title}
     ]
 
