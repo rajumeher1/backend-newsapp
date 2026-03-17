@@ -2,7 +2,6 @@
 
 import time
 import numpy as np
-# from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from fetchnews.config import RSS_FEEDS
 from fetchnews.rss_fetcher import get_feed_entries
