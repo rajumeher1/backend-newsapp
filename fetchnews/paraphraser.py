@@ -3,7 +3,8 @@
 import time
 from fetchnews.config import CLIENT
 
-model = "meta-llama/Meta-Llama-3-8B-Instruct"
+# model = "meta-llama/Meta-Llama-3-8B-Instruct"
+model = "mistralai/Mistral-7B-Instruct-v0.2"
 
 def paraphraser(title: str) -> str:
     """
