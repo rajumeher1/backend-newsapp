@@ -2,7 +2,7 @@
 
 import time
 import numpy as np
-from concurrent.futures import ThreadPoolExecutor, as_completed
+# from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from fetchnews.config import RSS_FEEDS
 from fetchnews.rss_fetcher import get_feed_entries
@@ -19,30 +19,20 @@ def run():
 
     new_articles = []
 
-    futures = []
+    # futures = []
 
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    for source, url in RSS_FEEDS.items():
 
-        # Iterate through RSS feeds
-        for source, url in RSS_FEEDS.items():
+        entries = get_feed_entries(url)
 
-            entries = get_feed_entries(url)
+        for item in entries:
 
-            for item in entries:
-
-                futures.append(
-                    executor.submit(
-                        process_item,
-                        item,
-                        source,
-                        seen_links,
-                        existing_embeddings
-                    )
-                )
-
-        for future in as_completed(futures):
-
-            result = future.result()
+            result = process_item(
+                item,
+                source,
+                seen_links,
+                existing_embeddings
+            )
 
             if not result:
                 continue
@@ -54,7 +44,7 @@ def run():
             seen_links.add(article["link"])
             existing_embeddings.append(np.array(embedding))
 
-            time.sleep(5)  # optional rate limiting
+            time.sleep(2)  # ✅ real rate limiting
 
     # Save new articles to MongoDB
     save_articles(new_articles)

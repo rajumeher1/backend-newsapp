@@ -3,8 +3,7 @@
 import time
 from fetchnews.config import CLIENT
 
-# model = "meta-llama/Meta-Llama-3-8B-Instruct"
-model = "mistralai/Mistral-7B-Instruct-v0.2"
+model = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 def paraphraser(title: str) -> str:
     """
@@ -18,7 +17,7 @@ def paraphraser(title: str) -> str:
       {"role": "system",
       "content": '''You are a professional paraphrasing assistant.
                     Rewrite the user's text keeping the same meaning. Output only the
-                    paraphrased text. within or below 20 words, without a period at the end.'''},
+                    paraphrased text, below or within 20 words, without a period at the end.'''},
       {"role": "user", "content": title}
     ]
 
