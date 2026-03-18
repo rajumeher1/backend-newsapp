@@ -4,9 +4,9 @@ trafilatura
 lxml_html_clean
 sentence-transformers
 scikit-learn
+huggingface_hub=-1.6
 numpy
 pymongo
 python-dotenv
 beautifulsoup4
 transformers==5.0
-huggingface_hub==1.6

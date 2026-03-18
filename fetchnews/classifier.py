@@ -3,6 +3,8 @@
 from fetchnews.config import CLIENT
 import requests
 
+model = "facebook/bart-large-mnli"
+
 labels = ["india", "international", "business", "sports", "entertainment", "technology", "politics", "health", "science"]
 
 def classifier(text):
