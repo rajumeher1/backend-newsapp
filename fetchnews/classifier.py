@@ -5,8 +5,8 @@ import requests
 
 labels = ["india", "international", "business", "sports", "entertainment", "technology", "politics", "health", "science"]
 
-def classifier(title, summary):
-    text = f"News article: {title}. {summary}"
+def classifier(text):
+    text = f"News article: {text}"
 
     result = CLIENT.zero_shot_classification(
         text,
