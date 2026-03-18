@@ -35,7 +35,9 @@ def process_item(item, source, seen_links, existing_embeddings):
         if not summary or summary in ["No content", "Summary unavailable"]:
             return None
 
-        embedding = create_embedding(new_title, summary)
+        text = new_title + ". " + summary
+
+        embedding = create_embedding(text)
 
         if is_duplicate(embedding, existing_embeddings):
             print(f"Duplicate article skipped: {title}")
@@ -44,7 +46,7 @@ def process_item(item, source, seen_links, existing_embeddings):
         article = {
             "image": image_url,
             "title": new_title,
-            "description": summary,
+            "summary": summary,
             "link": link,
             "publishedAt": item.get("published", ""),
             "source": source,

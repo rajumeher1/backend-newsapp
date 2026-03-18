@@ -20,7 +20,7 @@ def get_feed_entries(rss_url):
 
         sorted_entries = sorted(feed.entries, key = lambda e: getattr(e, "published_parsed", None), reverse=True)
 
-        return sorted_entries[:2]
+        return sorted_entries[:1]
 
     except Exception as e:
         print(f"Error fetching RSS feed {rss_url}: {e}")
