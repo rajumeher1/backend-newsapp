@@ -8,3 +8,5 @@ numpy
 pymongo
 python-dotenv
 beautifulsoup4
+transformer==5.0
+huggingface_hub==1.6
