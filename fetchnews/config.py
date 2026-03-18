@@ -15,15 +15,15 @@ COLLECTION_NAME = os.getenv("COLLECTION_NAME", "articles")
 # RSS Feeds
 RSS_FEEDS = {
     "Times of India": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
-    "Hindustan Times": "https://www.hindustantimes.com/feeds/rss/latest/rssfeed.xml",
-    "Indian Express": "https://indianexpress.com/feed/",
-    "The Tribune": "https://publish.tribuneindia.com/newscategory/top-headlines/feed/",
-    "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
-    "ABP Live": "https://news.abplive.com/home/feed",
-    "News18": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
-    "Times Now": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
-    "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
-    "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/world.xml"
+    # "Hindustan Times": "https://www.hindustantimes.com/feeds/rss/latest/rssfeed.xml",
+    # "Indian Express": "https://indianexpress.com/feed/",
+    # "The Tribune": "https://publish.tribuneindia.com/newscategory/top-headlines/feed/",
+    # "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
+    # "ABP Live": "https://news.abplive.com/home/feed",
+    # "News18": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
+    # "Times Now": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
+    # "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
+    # "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/world.xml"
 }
 
 # HTTP headers for requests

@@ -1,54 +1,9 @@
-# name: RSS Fetcher Cron
-
-# on:
-#   # schedule:
-#     # Run at 15 and 45 minutes past every hour from 0 to 17 UTC
-#     # - cron: "15,45 0-17 * * *"
-#   workflow_dispatch:
-
-# concurrency:
-#   group: rss-fetcher
-#   cancel-in-progress: false
-
-# jobs:
-#   run-rss:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout repo
-#         uses: actions/checkout@v4
-
-#       - name: Setup Python
-#         uses: actions/setup-python@v5
-#         with:
-#           python-version: "3.12"
-
-#       - name: Cache virtual environment
-#         uses: actions/cache@v4
-#         with:
-#           path: .venv
-#           key: venv-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-
-#       - name: Create venv and install dependencies
-#         run: |
-#           if [ ! -d ".venv" ]; then
-#             python -m venv .venv
-#           fi
-#           source .venv/bin/activate
-#           pip install --upgrade pip
-#           pip install -r requirements.txt
-
-#       - name: Run RSS Fetcher
-#         env:
-#           HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
-#           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-#         run: |
-#           source .venv/bin/activate
-#           python -m cron.main
-
 name: RSS Fetcher Cron
 
 on:
+  # schedule:
+    # Run at 15 and 45 minutes past every hour from 0 to 17 UTC
+    # - cron: "15,45 0-17 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -63,42 +18,87 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Enable Docker BuildKit (faster builds)
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
 
-      # Cache Docker layers
-      - name: Cache Docker layers
+      - name: Cache virtual environment
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
-          key: docker-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            docker-${{ runner.os }}-
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
 
-      # Build Docker image with cache
-      - name: Build Docker image
+      - name: Create venv and install dependencies
         run: |
-          docker buildx build \
-            --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache-new \
-            -t rss-fetcher \
-            --load \
-            .
+          if [ ! -d ".venv" ]; then
+            python -m venv .venv
+          fi
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
-      # Move cache (important step)
-      - name: Move Docker cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-
-      # Run container
       - name: Run RSS Fetcher
         env:
           HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: |
-          docker run --rm \
-            -e HUGGINGFACE_API_TOKEN \
-            -e MONGODB_URI \
-            rss-fetcher
+          source .venv/bin/activate
+          python -m cron.main
+
+# name: RSS Fetcher Cron
+
+# on:
+#   workflow_dispatch:
+
+# concurrency:
+#   group: rss-fetcher
+#   cancel-in-progress: false
+
+# jobs:
+#   run-rss:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4
+
+#       # Enable Docker BuildKit (faster builds)
+#       - name: Set up Docker Buildx
+#         uses: docker/setup-buildx-action@v3
+
+#       # Cache Docker layers
+#       - name: Cache Docker layers
+#         uses: actions/cache@v4
+#         with:
+#           path: /tmp/.buildx-cache
+#           key: docker-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+#           restore-keys: |
+#             docker-${{ runner.os }}-
+
+#       # Build Docker image with cache
+#       - name: Build Docker image
+#         run: |
+#           docker buildx build \
+#             --cache-from=type=local,src=/tmp/.buildx-cache \
+#             --cache-to=type=local,dest=/tmp/.buildx-cache-new \
+#             -t rss-fetcher \
+#             --load \
+#             .
+
+#       # Move cache (important step)
+#       - name: Move Docker cache
+#         run: |
+#           rm -rf /tmp/.buildx-cache
+#           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+#       # Run container
+#       - name: Run RSS Fetcher
+#         env:
+#           HUGGINGFACE_API_TOKEN: ${{ secrets.HUGGINGFACE_API_TOKEN }}
+#           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+#         run: |
+#           docker run --rm \
+#             -e HUGGINGFACE_API_TOKEN \
+#             -e MONGODB_URI \
+#             rss-fetcher

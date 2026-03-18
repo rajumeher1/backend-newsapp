@@ -1,11 +1,10 @@
 feedparser
-pandas
 requests
 trafilatura
 lxml_html_clean
 sentence-transformers
 scikit-learn
-huggingface-hub
+huggingface_hub
 numpy
 pymongo
 python-dotenv
