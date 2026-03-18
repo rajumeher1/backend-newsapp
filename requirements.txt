@@ -4,7 +4,6 @@ trafilatura
 lxml_html_clean
 sentence-transformers
 scikit-learn
-huggingface_hub
 numpy
 pymongo
 python-dotenv
