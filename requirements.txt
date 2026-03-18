@@ -4,7 +4,7 @@ trafilatura
 lxml_html_clean
 sentence-transformers
 scikit-learn
-huggingface_hub=-1.6
+huggingface_hub==1.6
 numpy
 pymongo
 python-dotenv
