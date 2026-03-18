@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from fetchnews.rss_fetcher import get_image_url
 from fetchnews.paraphraser import paraphraser
 from fetchnews.summarizer import summarizer
+from fetchnews.classifier import classifier
 from fetchnews.embeddings import create_embedding, is_duplicate, create_title_embedding
 
 
@@ -37,6 +38,8 @@ def process_item(item, source, seen_links, existing_embeddings):
 
         text = new_title + ". " + summary
 
+        categories = classifier(text)
+
         embedding = create_embedding(text)
 
         if is_duplicate(embedding, existing_embeddings):
@@ -50,7 +53,7 @@ def process_item(item, source, seen_links, existing_embeddings):
             "link": link,
             "publishedAt": item.get("published", ""),
             "source": source,
-            "category": [],
+            "category": categories,
             "embedding": embedding.tolist(),
             "createdAt": datetime.now(timezone.utc)
         }
