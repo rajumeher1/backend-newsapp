@@ -25,5 +25,5 @@ COLLECTION_NAME = os.getenv("COLLECTION_NAME", "articles")
 #     "User-Agent": "Mozilla/5.0"
 # }
 
-# # Hugging Face API token
+# Hugging Face API token
 # HF_TOKEN = os.getenv("HF_TOKEN")
