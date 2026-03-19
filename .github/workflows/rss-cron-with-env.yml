@@ -23,21 +23,20 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Cache virtual environment
-        id: cache-venv
+      - name: Cache pip
         uses: actions/cache@v4
         with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
 
       - name: Create venv and install dependencies
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          pip install --upgrade pip
-          if [ "${{ steps.cache-venv.outputs.cache-hit }}" != "true" ]; then
-            pip install -r requirements.txt
-          fi
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run RSS Fetcher
         env:
