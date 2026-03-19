@@ -1,7 +1,4 @@
 # app/embeddings.py
-from transformers import logging
-logging.set_verbosity_error()
-
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
