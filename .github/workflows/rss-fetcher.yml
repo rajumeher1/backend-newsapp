@@ -1,57 +1,8 @@
-# name: RSS Fetcher
-
-# on:
-#   # schedule:
-#     # Run at 15 and 45 minutes past every hour from 0 to 17 UTC
-#     # - cron: "15,45 0-17 * * *"
-#   workflow_dispatch:
-
-# concurrency:
-#   group: rss-fetcher
-#   cancel-in-progress: false
-
-# jobs:
-#   run-rss:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout repo
-#         uses: actions/checkout@v4
-
-#       - name: Setup Python
-#         uses: actions/setup-python@v5
-#         with:
-#           python-version: "3.11"
-
-#       - name: Cache pip
-#         uses: actions/cache@v4
-#         with:
-#           path: ~/.cache/pip
-#           key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-#           restore-keys: |
-#             pip-${{ runner.os }}-
-
-#       - name: Create venv and install dependencies
-#         run: |
-#           python -m venv .venv
-#           source .venv/bin/activate
-#           python -m pip install --upgrade pip
-#           pip install -r requirements.txt
-
-#       - name: Run RSS Fetcher
-#         env:
-#           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-#           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-#         run: |
-#           source .venv/bin/activate
-#           python -m cron.main
-
-
 name: RSS Fetcher
 
 on:
   workflow_dispatch:
-  
+
 concurrency:
   group: rss-fetcher
   cancel-in-progress: false
