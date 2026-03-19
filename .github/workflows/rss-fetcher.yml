@@ -22,19 +22,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      # 3️⃣ Cache pip downloads (fast install)
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+      # # 3️⃣ Cache pip downloads (fast install)
+      # - name: Cache pip
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.cache/pip
+      #     key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
 
-      # 4️⃣ Cache Hugging Face models
-      - name: Cache Hugging Face
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/huggingface
-          key: hf-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+      # # 4️⃣ Cache Hugging Face models
+      # - name: Cache Hugging Face
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.cache/huggingface
+      #     key: hf-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
 
       # 5️⃣ Cache venv
       - name: Cache virtual environment

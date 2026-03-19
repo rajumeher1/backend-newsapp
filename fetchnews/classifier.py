@@ -4,7 +4,8 @@ from fetchnews.config import CLIENT
 
 model = "facebook/bart-large-mnli"
 
-labels = ["india", "international", "business", "sports", "entertainment", "technology", "politics", "health", "science"]
+labels = ["india", "international", "business", "sports", "entertainment",
+        "technology", "politics", "health", "science", "education", "miscellaneus"]
 
 def classifier(text):
     text = f"News article: {text}"
@@ -16,9 +17,6 @@ def classifier(text):
         model=model
     )
     
-    categories = [r.label for r in result if r.score > 0.5]
-
-    if not categories:
-        categories = ['other']
+    categories = [r.label for r in result if r.score > 0.7]
 
     return categories
