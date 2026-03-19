@@ -68,40 +68,54 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Python 3.11
+      # 2️⃣ Setup Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 3️⃣ Cache pip downloads
-      - name: Cache pip
+      # # 3️⃣ Cache pip downloads (fast install)
+      # - name: Cache pip
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.cache/pip
+      #     key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+
+      # # 4️⃣ Cache Hugging Face models
+      # - name: Cache Hugging Face
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.cache/huggingface
+      #     key: hf-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+
+      # 5️⃣ Cache venv
+      - name: Cache virtual environment
+        id: cache-venv
         uses: actions/cache@v4
         with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            venv-${{ runner.os }}-
 
-      # 4️⃣ Cache Hugging Face models
-      - name: Cache Hugging Face
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/huggingface
-          key: hf-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-
-      # 5️⃣ Create venv and install dependencies quickly
+      # 6️⃣ Create venv and install dependencies if cache missed
       - name: Create venv and install dependencies
         run: |
-          python -m venv .venv
-          source .venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install --prefer-binary -r requirements.txt
+          if [ "${{ steps.cache-venv.outputs.cache-hit }}" != "true" ]; then
+            python -m venv .venv
+            source .venv/bin/activate
+            python -m pip install --upgrade pip
+            pip install --prefer-binary -r requirements.txt
+          else
+            echo "Restoring .venv from cache"
+            source .venv/bin/activate
+          fi
 
-      # 6️⃣ Run RSS Fetcher
+      # 7️⃣ Run RSS Fetcher
       - name: Run RSS Fetcher
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: |      
-          # Activate venv and run main
+        run: |
           source .venv/bin/activate
           python -m cron.main
