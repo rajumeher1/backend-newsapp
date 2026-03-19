@@ -40,10 +40,10 @@ HEADERS = {
 }
 
 # Hugging Face API token
-HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Initialize Hugging Face inference client
 CLIENT = InferenceClient(
     provider="auto",
-    api_key=HUGGINGFACE_API_TOKEN
+    api_key=HF_TOKEN
 )

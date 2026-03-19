@@ -11,13 +11,6 @@ MONGO_URI = os.getenv("MONGODB_URI")
 DB_NAME = os.getenv("DB_NAME", "news_db")
 COLLECTION_NAME = os.getenv("COLLECTION_NAME", "articles")
 
-# RSS Feeds
-RSS_FEEDS = {
-    "Times of India": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
-    "Hindustan Times": "https://www.hindustantimes.com/feeds/rss/latest/rssfeed.xml",
-    "Indian Express": "https://indianexpress.com/section/news-today/feed/",
-    "The Tribune": "https://publish.tribuneindia.com/newscategory/top-headlines/feed/",
-}
 
 # HTTP headers for requests
 # HEADERS = {
@@ -28,9 +21,9 @@ RSS_FEEDS = {
 #     "Connection": "keep-alive"
 # }
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0"
-}
+# HEADERS = {
+#     "User-Agent": "Mozilla/5.0"
+# }
 
-# Hugging Face API token
-HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+# # Hugging Face API token
+# HF_TOKEN = os.getenv("HF_TOKEN")
