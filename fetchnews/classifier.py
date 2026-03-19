@@ -4,7 +4,7 @@ from fetchnews.config import CLIENT
 
 model = "facebook/bart-large-mnli"
 
-labels = ["India", "International", "Business", "Sports", "Entertainment", "Finance",
+labels = ["India", "World", "Business", "Sports", "Entertainment", "Finance",
         "Technology", "Politics", "Health", "Science", "Education", "Miscellaneus"]
 
 def classifier(text):
