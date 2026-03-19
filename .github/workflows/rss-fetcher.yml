@@ -47,14 +47,11 @@
 #           python -m cron.main
 
 
-name: RSS Fetcher Cron
+name: RSS Fetcher
 
 on:
   workflow_dispatch:
-  # schedule:
-    # Runs at 15 and 45 minutes past every hour from 0 to 17 UTC
-    # - cron: "15,45 0-17 * * *"
-
+  
 concurrency:
   group: rss-fetcher
   cancel-in-progress: false
