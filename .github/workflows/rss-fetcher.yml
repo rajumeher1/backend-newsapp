@@ -101,10 +101,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: |
-          # Silence Hugging Face warnings
-          python -c "from transformers import logging; logging.set_verbosity_error()"
-          
+        run: |      
           # Activate venv and run main
           source .venv/bin/activate
           python -m cron.main
