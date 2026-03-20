@@ -5,17 +5,20 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_feed_entries(rss_url):
-    """
-    Fetch RSS feed entries from a given URL.
-    
-    Args:
-        rss_url (str): RSS feed URL
-        limit (int): Maximum number of entries to return
-    Returns:
-        list of feedparser entries
-    """
+
     try:
         response = requests.get(rss_url, headers=HEADERS)
+
+        # 🚨 Check if blocked
+        if response.status_code != 200:
+            print(f"HTTP Error {response.status_code} for {rss_url}")
+            return []
+
+        # 🚨 Detect "Access Denied" HTML
+        if b"Access Denied" in response.content:
+            print("Blocked by server (likely bot protection)")
+            return []
+
         feed = feedparser.parse(response.content)
 
         sorted_entries = sorted(feed.entries, key = lambda e: getattr(e, "published_parsed", None), reverse=True)
@@ -25,6 +28,7 @@ def get_feed_entries(rss_url):
     except Exception as e:
         print(f"Error fetching RSS feed {rss_url}: {e}")
         return []
+        
 
 def get_image_url(item):
     """
