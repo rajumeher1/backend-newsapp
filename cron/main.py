@@ -14,11 +14,9 @@ def run():
     # Fetch existing articles and embeddings from MongoDB
     existing_articles, existing_embeddings, seen_links = get_existing_articles()
 
-    # existing_embeddings = [np.array(e) for e in existing_embeddings]
+    existing_embeddings = [np.array(e) for e in existing_embeddings]
 
     new_articles = []
-
-    # futures = []
 
     for source, url in RSS_FEEDS.items():
 
@@ -49,8 +47,7 @@ def run():
                 time.sleep(2)  # ✅ real rate limiting
 
     # Save new articles to MongoDB
-    if new_articles:
-        save_articles(new_articles)
+    save_articles(new_articles)
 
     print(f"New articles added: {len(new_articles)}")
     print(f"Total articles in DB: {len(existing_articles) + len(new_articles)}")
