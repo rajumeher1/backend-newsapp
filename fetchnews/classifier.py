@@ -1,8 +1,9 @@
 # fetchnews/classifier.py
-
+import time
 from fetchnews.config import CLIENT
 
-model = "facebook/bart-large-mnli"
+# model = "facebook/bart-large-mnli"
+model = "valhalla/distilbart-mnli-12-3"
 
 labels = ["India", "World", "Business", "Sports", "Entertainment", "Finance",
         "Technology", "Politics", "Health & Fitness", "Science", "Education"]
@@ -21,5 +22,6 @@ def classifier(text):
 
     if not categories:
         return ["Misc"]
+    time.sleep(1)
 
     return categories
