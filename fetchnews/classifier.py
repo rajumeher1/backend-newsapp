@@ -22,6 +22,6 @@ def classifier(text):
 
     if not categories:
         return ["Misc"]
-    time.sleep(1)
+    time.sleep(2)
 
     return categories
