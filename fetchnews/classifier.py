@@ -1,5 +1,4 @@
 # fetchnews/classifier.py
-import time
 from fetchnews.config import CLIENT
 
 # model = "facebook/bart-large-mnli"
@@ -22,6 +21,5 @@ def classifier(text):
 
     if not categories:
         return ["Misc"]
-    time.sleep(2)
 
     return categories

@@ -42,7 +42,7 @@ def run():
                 seen_links.add(article["link"])
                 existing_embeddings.append(np.array(embedding))
 
-                time.sleep(2)  # ✅ real rate limiting
+                time.sleep(1)  # ✅ real rate limiting
 
             except Exception as e:
                 print(f"Error processing item from {source}: {e}")

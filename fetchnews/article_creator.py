@@ -1,5 +1,5 @@
 #fetchnes/article_creator.py
-
+import time
 from datetime import datetime, timezone
 from fetchnews.rss_fetcher import get_image_url
 from fetchnews.paraphraser import paraphraser
@@ -59,6 +59,7 @@ def process_item(item, source, seen_links, existing_embeddings):
         }
 
         return article, embedding
+        time.sleep(2)
 
     except Exception as e:
         print("Processing Failed:", e)
