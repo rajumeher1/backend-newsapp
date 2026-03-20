@@ -20,23 +20,32 @@ def run():
 
     for source, url in RSS_FEEDS.items():
 
-        entries = get_feed_entries(url)
+        try:
+            entries = get_feed_entries(url)
+        except Exception as e:
+            print(f"Error fetching {source}: {e}")
+            continue
 
         for item in entries:
 
-            result = process_item(item, source, seen_links, existing_embeddings)
+            try:
+                result = process_item(item, source, seen_links, existing_embeddings)
 
-            if not result:
-                continue
+                if not result:
+                    print(f"Skipped item from {source}")
+                    continue
 
-            article, embedding = result
+                article, embedding = result
 
-            new_articles.append(article)
+                new_articles.append(article)
 
-            seen_links.add(article["link"])
-            existing_embeddings.append(np.array(embedding))
+                seen_links.add(article["link"])
+                existing_embeddings.append(np.array(embedding))
 
-            time.sleep(2)  # ✅ real rate limiting
+                time.sleep(2)  # ✅ real rate limiting
+
+            except Exception as e:
+                print(f"Error processing item from {source}: {e}")
 
     # Save new articles to MongoDB
     save_articles(new_articles)
