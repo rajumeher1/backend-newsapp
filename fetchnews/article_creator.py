@@ -38,7 +38,7 @@ def process_item(item, source, seen_links, existing_embeddings):
 
         text = new_title + ". " + summary
 
-        categories = classifier(text)
+        # categories = classifier(text)
 
         embedding = create_embedding(text)
 
@@ -53,7 +53,7 @@ def process_item(item, source, seen_links, existing_embeddings):
             "link": link,
             "publishedAt": item.get("published", ""),
             "source": source,
-            "category": categories,
+            "category": [],
             "embedding": embedding.tolist(),
             "createdAt": datetime.now(timezone.utc)
         }
