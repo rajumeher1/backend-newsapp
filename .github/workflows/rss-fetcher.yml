@@ -1,7 +1,7 @@
 name: RSS Fetcher
 
 on:
-  workflow_dispatch:
+  # workflow_dispatch:
 
 concurrency:
   group: rss-fetcher

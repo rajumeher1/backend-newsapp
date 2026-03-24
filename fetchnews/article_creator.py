@@ -38,7 +38,7 @@ def process_item(item, source, seen_links, existing_embeddings):
 
         text = new_title + ". " + summary
 
-        # categories = classifier(text)
+        categories = classifier(text)
 
         embedding = create_embedding(text)
 
