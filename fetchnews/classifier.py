@@ -26,7 +26,7 @@
 
 # fetchnews/classifier.py
 
-from models import ZeroShotClassifier
+from fetchnews.models import ZeroShotClassifier
 
 
 labels = [

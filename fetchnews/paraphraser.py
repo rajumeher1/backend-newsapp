@@ -45,7 +45,7 @@
 
 # app/paraphraser.py
 
-from models import Paraphraser
+from fetchnews.models import Paraphraser
 
 
 def paraphraser(text: str) -> str:

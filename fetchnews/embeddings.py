@@ -50,7 +50,7 @@
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from models import SentenceEmbedder
+from fetchnews.models import SentenceEmbedder
 
 
 def get_model():

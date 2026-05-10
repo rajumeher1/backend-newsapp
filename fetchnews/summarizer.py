@@ -51,7 +51,7 @@ import requests
 import time
 import trafilatura
 from fetchnews.config import HEADERS, CLIENT
-from models import Summarizer
+from fetchnews.models import Summarizer
 
 
 
