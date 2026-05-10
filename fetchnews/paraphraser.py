@@ -45,18 +45,17 @@
 
 # app/paraphraser.py
 
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from models import Paraphraser
 
-model_name = "ramsrigouthamg/t5_paraphraser"
-
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 def paraphraser(text: str) -> str:
     if not text:
         return "No text"
 
     input_text = f"paraphrase: {text}"
+
+    # 👇 Load ONCE per runtime (singleton)
+    tokenizer, model = Paraphraser.get()
 
     inputs = tokenizer(
         input_text,

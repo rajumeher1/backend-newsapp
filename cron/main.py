@@ -1,6 +1,5 @@
 # cron/main.py
 
-import time
 import numpy as np
 
 from fetchnews.config import RSS_FEEDS
@@ -42,7 +41,6 @@ def run():
                 seen_links.add(article["link"])
                 existing_embeddings.append(np.array(embedding))
 
-                time.sleep(1)  # ✅ real rate limiting
 
             except Exception as e:
                 print(f"Error processing item from {source}: {e}")

@@ -51,10 +51,8 @@ import requests
 import time
 import trafilatura
 from fetchnews.config import HEADERS, CLIENT
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from models import Summarizer
 
-tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
-model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
 
 
 def summarizer(url: str):
@@ -67,6 +65,9 @@ def summarizer(url: str):
             return "No content"
 
         content = content[:4000]
+
+        # 👇 Get singleton model (NO reloading)
+        tokenizer, model = Summarizer.get()
 
         inputs = tokenizer(
             content,

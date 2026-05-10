@@ -26,9 +26,8 @@
 
 # fetchnews/classifier.py
 
-from transformers import pipeline
+from models import ZeroShotClassifier
 
-model = "facebook/bart-large-mnli"
 
 labels = [
     "India",
@@ -44,15 +43,13 @@ labels = [
     "Education"
 ]
 
-# load once
-classifier_model = pipeline(
-    "zero-shot-classification",
-    model=model
-)
 
 def classifier(text):
 
     text = f"News article: {text}"
+
+    # 👇 singleton pipeline (loaded once per runtime)
+    classifier_model = ZeroShotClassifier.get()
 
     result = classifier_model(
         text,
