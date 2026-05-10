@@ -8,3 +8,4 @@ numpy
 pymongo
 python-dotenv
 beautifulsoup4
+tiktoken
