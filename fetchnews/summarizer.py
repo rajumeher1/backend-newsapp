@@ -51,6 +51,8 @@ import requests
 import time
 import trafilatura
 from fetchnews.config import HEADERS, CLIENT
+from transformers import pipeline
+
 
 # load once (IMPORTANT for GitHub Actions + performance)
 summarizer_model = pipeline(
