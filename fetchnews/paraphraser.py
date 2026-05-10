@@ -1,44 +1,73 @@
+# # app/paraphraser.py
+
+# import time
+# from fetchnews.config import CLIENT
+
+# model = "meta-llama/Meta-Llama-3-8B-Instruct"
+
+# def paraphraser(title: str) -> str:
+#     """
+#     Paraphrase a news title using HF model
+#     """
+
+#     if not title:
+#             return "No title"
+
+#     messages = [
+#       {"role": "system",
+#       "content": '''You are a professional paraphrasing assistant.
+#                     Rewrite the user's text keeping the same meaning. Output only the
+#                     paraphrased text, below or within 20 words, without a period at the end.'''},
+#       {"role": "user", "content": title}
+#     ]
+
+#     last_error = None
+
+#     for _ in range(2):
+
+#         try:
+#             response = CLIENT.chat.completions.create(
+#                 model = model,
+#                 messages = messages,
+#                 temperature = 0.4
+#             )
+
+#             rewritten = response.choices[0].message.content
+#             return rewritten.strip()
+
+#         except Exception as e:
+#             last_error = e
+#             time.sleep(5)
+
+#     print(f'Error for title: {title} - {last_error}')
+            
+#     return "Title unavailable"
+
 # app/paraphraser.py
 
-import time
-from fetchnews.config import CLIENT
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-model = "meta-llama/Meta-Llama-3-8B-Instruct"
+model_name = "ramsrigouthamg/t5_paraphraser"
 
-def paraphraser(title: str) -> str:
-    """
-    Paraphrase a news title using HF model
-    """
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
-    if not title:
-            return "No title"
+def paraphraser(text: str) -> str:
+    if not text:
+        return "No text"
 
-    messages = [
-      {"role": "system",
-      "content": '''You are a professional paraphrasing assistant.
-                    Rewrite the user's text keeping the same meaning. Output only the
-                    paraphrased text, below or within 20 words, without a period at the end.'''},
-      {"role": "user", "content": title}
-    ]
+    input_text = f"paraphrase: {text}"
 
-    last_error = None
+    inputs = tokenizer(
+        input_text,
+        return_tensors="pt",
+        truncation=True
+    )
 
-    for _ in range(2):
+    outputs = model.generate(
+        **inputs,
+        max_new_tokens=60,
+        num_beams=5
+    )
 
-        try:
-            response = CLIENT.chat.completions.create(
-                model = model,
-                messages = messages,
-                temperature = 0.4
-            )
-
-            rewritten = response.choices[0].message.content
-            return rewritten.strip()
-
-        except Exception as e:
-            last_error = e
-            time.sleep(5)
-
-    print(f'Error for title: {title} - {last_error}')
-            
-    return "Title unavailable"
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)

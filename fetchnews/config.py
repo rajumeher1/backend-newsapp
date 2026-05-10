@@ -20,10 +20,10 @@ RSS_FEEDS = {
     "The Tribune": "https://publish.tribuneindia.com/newscategory/top-headlines/feed/",
     "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
     "ABP Live": "https://news.abplive.com/home/feed",
-    "News18": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
     "Times Now": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
-    "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
-    "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/world.xml"
+    # "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
+    # "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/world.xml",
+    # "News18": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
 }
 
 # HTTP headers for requests

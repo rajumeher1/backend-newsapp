@@ -53,13 +53,12 @@ def process_item(item, source, seen_links, existing_embeddings):
             "link": link,
             "publishedAt": item.get("published", ""),
             "source": source,
-            "category": [],
+            "category": categories,
             "embedding": embedding.tolist(),
             "createdAt": datetime.now(timezone.utc)
         }
 
         return article, embedding
-        time.sleep(2)
 
     except Exception as e:
         print("Processing Failed:", e)
