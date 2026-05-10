@@ -13,8 +13,9 @@ jobs:
 
     env:
       # ✅ FIXED PATH (important)
-      HF_HOME: /home/runner/.cache/huggingface
-      TRANSFORMERS_CACHE: /home/runner/.cache/huggingface
+      HF_HOME: ~/.cache/huggingface
+      TRANSFORMERS_CACHE: ~/.cache/huggingface
+      PIP_CACHE_DIR: ~/.cache/pip
 
     steps:
       # 1️⃣ Checkout repo
@@ -40,8 +41,8 @@ jobs:
       - name: Cache HuggingFace models
         uses: actions/cache@v4
         with:
-          path: /home/runner/.cache/huggingface
-          key: hf-${{ runner.os }}-models
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             hf-${{ runner.os }}-
 
