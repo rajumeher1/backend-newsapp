@@ -53,9 +53,8 @@ jobs:
       # 6️⃣ Preload all models once (prevents runtime downloads)
       - name: Preload ML models
         run: |
-          python -c "from models import Summarizer, Paraphraser, ZeroShotClassifier, SentenceEmbedder; Summarizer.get(); Paraphraser.get(); ZeroShotClassifier.get(); SentenceEmbedder.get()"
-
-      # 7️⃣ Run RSS pipeline
+          PYTHONPATH=. python -c "from models import Summarizer, Paraphraser, ZeroShotClassifier, SentenceEmbedder; Summarizer.get(); Paraphraser.get(); ZeroShotClassifier.get(); SentenceEmbedder.get()"
+          
       - name: Run RSS Fetcher
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
