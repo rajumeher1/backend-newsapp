@@ -51,25 +51,13 @@ import requests
 import time
 import trafilatura
 from fetchnews.config import HEADERS, CLIENT
-from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-
-# load once (IMPORTANT for GitHub Actions + performance)
-summarizer_model = pipeline(
-    "summarization",
-    model="facebook/bart-large-cnn"
-)
+tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
+model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
 
 
 def summarizer(url: str):
-    """
-    Summarize the content of a URL.
-    
-    Args:
-        url (str)
-    Returns:
-        str: summary text
-    """
     try:
         response = requests.get(url, headers=HEADERS, timeout=20)
         html = response.text
@@ -78,28 +66,26 @@ def summarizer(url: str):
         if not content:
             return "No content"
 
-        content = content[:4000]  # Limit to first 4000 characters
+        content = content[:4000]
 
-        last_error = None
+        inputs = tokenizer(
+            content,
+            return_tensors="pt",
+            truncation=True,
+            max_length=1024
+        )
 
-        # Retry mechanism
-        for _ in range(3):
-            try:
-                result = summarizer_model(
-                    content,
-                    max_length=130,
-                    min_length=60,
-                    do_sample=False
-                    # model="facebook/bart-large-cnn",
-                    # model="sshleifer/distilbart-cnn-12-6",
-                )
-                return result.summary_text.replace("<n>", " ").strip()
+        summary_ids = model.generate(
+            inputs["input_ids"],
+            max_length=130,
+            min_length=60,
+            length_penalty=2.0,
+            num_beams=4,
+            early_stopping=True
+        )
 
-            except Exception as e:
-                last_error = e
-                time.sleep(3)
-
-        return "Summary unavailable"
+        summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+        return summary.strip()
 
     except Exception as e:
         print("Error fetching/summarizing URL:", e)
