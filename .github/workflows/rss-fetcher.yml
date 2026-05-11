@@ -13,7 +13,7 @@ jobs:
 
     env:
       # ✅ FIXED PATH (important)
-      HF_HOME: ~/.cache/huggingface
+      HF_HOME: /home/runner/.cache/huggingface
       TRANSFORMERS_CACHE: ~/.cache/huggingface
       PIP_CACHE_DIR: ~/.cache/pip
 
