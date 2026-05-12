@@ -45,28 +45,38 @@
 
 # app/paraphraser.py
 
+import torch
+
 from fetchnews.models import Paraphraser
 
 
 def paraphraser(text: str) -> str:
+
     if not text:
         return "No text"
 
     input_text = f"paraphrase: {text}"
 
-    # 👇 Load ONCE per runtime (singleton)
-    tokenizer, model = Paraphraser.get()
+    # load singleton model
+    tokenizer, model, device = Paraphraser.get()
 
     inputs = tokenizer(
         input_text,
         return_tensors="pt",
-        truncation=True
-    )
+        truncation=True,
+        padding="longest"
+    ).to(device)
 
-    outputs = model.generate(
-        **inputs,
-        max_new_tokens=60,
-        num_beams=5
-    )
+    with torch.no_grad():
 
-    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+        outputs = model.generate(
+            **inputs,
+            max_new_tokens=60,
+            num_beams=3,
+            do_sample=False
+        )
+
+    return tokenizer.decode(
+        outputs[0],
+        skip_special_tokens=True
+    )
