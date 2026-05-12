@@ -1,4 +1,5 @@
-# app/db.py
+# fetchnews/db.py
+
 from pymongo import MongoClient
 from fetchnews.config import MONGO_URI, DB_NAME, COLLECTION_NAME
 

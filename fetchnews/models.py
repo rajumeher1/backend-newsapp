@@ -1,13 +1,11 @@
-# models.py
+# fetchnews/models.py
 
 import torch
-
 from transformers import (
     AutoTokenizer,
     AutoModelForSeq2SeqLM,
     pipeline
 )
-
 from sentence_transformers import SentenceTransformer
 
 
