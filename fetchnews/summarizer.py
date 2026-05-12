@@ -85,7 +85,7 @@ def summarizer(url: str):
                 inputs["input_ids"],
                 attention_mask=inputs["attention_mask"],
                 max_length=120,
-                min_length=50,
+                min_length=60,
                 num_beams=1,
                 do_sample=False
             )

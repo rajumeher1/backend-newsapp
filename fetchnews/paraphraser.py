@@ -74,6 +74,7 @@ def paraphraser(text: str) -> str:
             max_new_tokens=60,
             num_beams=3,
             do_sample=False
+            forced_bos_token_id=0
         )
 
     return tokenizer.decode(
