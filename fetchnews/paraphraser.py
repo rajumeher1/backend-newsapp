@@ -73,7 +73,7 @@ def paraphraser(text: str) -> str:
             **inputs,
             max_new_tokens=60,
             num_beams=3,
-            do_sample=False
+            do_sample=False,
             forced_bos_token_id=0
         )
 
