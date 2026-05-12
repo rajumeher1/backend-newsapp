@@ -55,7 +55,7 @@ def paraphraser(text: str) -> str:
     if not text:
         return "No text"
 
-    input_text = f"paraphrase: {text}"
+    input_text = f"paraphrase this news headline in a neutral tone: {text}"
 
     # load singleton model
     tokenizer, model, device = Paraphraser.get()

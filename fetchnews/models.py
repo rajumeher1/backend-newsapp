@@ -64,7 +64,7 @@ class Paraphraser:
                 else "cpu"
             )
 
-            model_name = "ramsrigouthamg/t5_paraphraser"
+            model_name = "google/flan-t5-base"
 
             cls._tokenizer = AutoTokenizer.from_pretrained(
                 model_name
