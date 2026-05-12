@@ -48,44 +48,53 @@
 
 # app/summarizer.py
 import requests
-import time
 import trafilatura
-from fetchnews.config import HEADERS, CLIENT
-from fetchnews.models import Summarizer
+import torch
 
+from fetchnews.config import HEADERS
+from fetchnews.models import Summarizer
 
 
 def summarizer(url: str):
     try:
         response = requests.get(url, headers=HEADERS, timeout=20)
+
         html = response.text
+
         content = trafilatura.extract(html)
 
         if not content:
             return "No content"
 
-        content = content[:4000]
+        # reduce processing size
+        # content = content[:4000]
 
-        # 👇 Get singleton model (NO reloading)
-        tokenizer, model = Summarizer.get()
+        tokenizer, model, device = Summarizer.get()
 
         inputs = tokenizer(
             content,
             return_tensors="pt",
             truncation=True,
-            max_length=1024
+            max_length=1024,
+            padding="longest"
+        ).to(device)
+
+        with torch.no_grad():
+
+            summary_ids = model.generate(
+                inputs["input_ids"],
+                attention_mask=inputs["attention_mask"],
+                max_length=120,
+                min_length=50,
+                num_beams=1,
+                do_sample=False
+            )
+
+        summary = tokenizer.decode(
+            summary_ids[0],
+            skip_special_tokens=True
         )
 
-        summary_ids = model.generate(
-            inputs["input_ids"],
-            max_length=130,
-            min_length=60,
-            length_penalty=2.0,
-            num_beams=4,
-            early_stopping=True
-        )
-
-        summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
         return summary.strip()
 
     except Exception as e:
