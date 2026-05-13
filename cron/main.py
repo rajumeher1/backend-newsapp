@@ -1,7 +1,7 @@
 # cron/main.py
 
 import numpy as np
-
+import random
 from fetchnews.config import RSS_FEEDS
 from fetchnews.rss_fetcher import get_feed_entries
 from fetchnews.article_creator import process_item
@@ -44,6 +44,9 @@ def run():
 
             except Exception as e:
                 print(f"Error processing item from {source}: {e}")
+
+    # Shuffle articles before saving
+    random.shuffle(new_articles)
 
     # Save new articles to MongoDB
     save_articles(new_articles)
