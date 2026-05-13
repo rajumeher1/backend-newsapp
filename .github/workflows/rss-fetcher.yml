@@ -14,8 +14,8 @@ jobs:
     env:
       # ✅ FIXED PATH (important)
       HF_HOME: /home/runner/.cache/huggingface
-      TRANSFORMERS_CACHE: ~/.cache/huggingface
-      PIP_CACHE_DIR: ~/.cache/pip
+      TRANSFORMERS_CACHE: /home/runner/.cache/huggingface
+      PIP_CACHE_DIR: /home/runner/.cache/pip
 
     steps:
       # 1️⃣ Checkout repo
@@ -57,9 +57,9 @@ jobs:
         run: mkdir -p /home/runner/.cache/huggingface
 
       # 7️⃣ Preload ML models (NO indentation issues)
-      - name: Preload ML models
-        run: |
-          python -c "from fetchnews.models import Summarizer, Paraphraser, ZeroShotClassifier, SentenceEmbedder; Summarizer.get(); Paraphraser.get(); ZeroShotClassifier.get(); SentenceEmbedder.get()"
+      # - name: Preload ML models
+      #   run: |
+      #     python -c "from fetchnews.models import Summarizer, Paraphraser, ZeroShotClassifier, SentenceEmbedder; Summarizer.get(); Paraphraser.get(); ZeroShotClassifier.get(); SentenceEmbedder.get()"
 
       # 8️⃣ Run pipeline
       - name: Run RSS Fetcher
