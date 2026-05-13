@@ -22,9 +22,7 @@ RSS_FEEDS = {
     "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
     "ABP Live": "https://news.abplive.com/home/feed",
     "Times Now": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
-    # "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
-    # "Firstpost": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/world.xml",
-    # "News18": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
+    "Assam Tribune": "https://assamtribune.com/feed",  
 }
 
 # HTTP headers for requests
