@@ -1,9 +1,11 @@
 # fetchnews/rss_fetcher.py
-
+import logging
 import feedparser
 from fetchnews.config import HEADERS
 import requests
 from bs4 import BeautifulSoup
+
+logging.basicConfig(level=logging.INFO)
 
 def get_feed_entries(rss_url):
 
@@ -12,12 +14,14 @@ def get_feed_entries(rss_url):
 
         # 🚨 Check if blocked
         if response.status_code != 200:
-            print(f"HTTP Error {response.status_code} for {rss_url}")
+            logging.error(f"HTTP Error {response.status_code} for {rss_url}")
+            # print(f"HTTP Error {response.status_code} for {rss_url}")
             return []
 
         # 🚨 Detect "Access Denied" HTML
         if b"Access Denied" in response.content:
-            print("Blocked by server (likely bot protection)")
+            logging.info("Blocked by server (likely bot protection)")
+            # print("Blocked by server (likely bot protection)")
             return []
 
         feed = feedparser.parse(response.content)
@@ -27,7 +31,8 @@ def get_feed_entries(rss_url):
         return sorted_entries[:3]
 
     except Exception as e:
-        print(f"Error fetching RSS feed {rss_url}: {e}")
+        logging.error(f"Error fetching RSS feed {rss_url}: {e}")
+        # print(f"Error fetching RSS feed {rss_url}: {e}")
         return []
         
 

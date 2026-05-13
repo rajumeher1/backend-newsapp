@@ -3,10 +3,12 @@
 import requests
 import trafilatura
 import torch
+import logging
 
 from fetchnews.config import HEADERS
 from fetchnews.models import Summarizer
 
+logging.basicConfig(level=logging.INFO)
 
 def summarizer(url: str):
     try:
@@ -51,5 +53,6 @@ def summarizer(url: str):
         return summary.strip()
 
     except Exception as e:
-        print("Error fetching/summarizing URL:", e)
+        logging.error("Error fetching/summarizing URL:", e)
+        # print("Error fetching/summarizing URL:", e)
         return "Summary unavailable"

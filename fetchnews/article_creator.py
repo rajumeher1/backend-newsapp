@@ -2,6 +2,7 @@
 
 import time
 from datetime import datetime, timezone
+import logging
 
 from fetchnews.rss_fetcher import get_image_url
 from fetchnews.paraphraser import paraphraser
@@ -13,6 +14,7 @@ from fetchnews.embeddings import (
     create_title_embedding
 )
 
+logging.basicConfig(level=logging.INFO)
 
 def process_item(item, source, seen_links, existing_embeddings):
 
@@ -89,5 +91,6 @@ def process_item(item, source, seen_links, existing_embeddings):
         return article, embedding
 
     except Exception as e:
-        print("Processing Failed:", e)
+        logging.error("Processing Failed:", e)
+        # print("Processing Failed:", e)
         return None

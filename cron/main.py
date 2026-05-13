@@ -1,5 +1,5 @@
 # cron/main.py
-
+import logging
 import numpy as np
 import random
 from fetchnews.config import RSS_FEEDS
@@ -7,6 +7,7 @@ from fetchnews.rss_fetcher import get_feed_entries
 from fetchnews.article_creator import process_item
 from fetchnews.db import get_existing_articles, save_articles
 
+logging.basicConfig(level=logging.INFO)
 
 def run():
 
@@ -19,10 +20,12 @@ def run():
 
     for source, url in RSS_FEEDS.items():
 
+        logging.info(f"Fetching: {source}")
+
         try:
             entries = get_feed_entries(url)
         except Exception as e:
-            print(f"Error fetching {source}: {e}")
+            logging.error(f"Error fetching {source}: {e}")
             continue
 
         for item in entries:
@@ -31,7 +34,8 @@ def run():
                 result = process_item(item, source, seen_links, existing_embeddings)
 
                 if not result:
-                    print(f"Skipped item from {source}")
+                    logging.info(f"Skipped item from {source}")
+                    # print(f"Skipped item from {source}")
                     continue
 
                 article, embedding = result
@@ -43,7 +47,8 @@ def run():
 
 
             except Exception as e:
-                print(f"Error processing item from {source}: {e}")
+                logging.error(f"Error processing item from {source}: {e}")
+                # print(f"Error processing item from {source}: {e}")
 
     # Shuffle articles before saving
     random.shuffle(new_articles)
@@ -51,8 +56,11 @@ def run():
     # Save new articles to MongoDB
     save_articles(new_articles)
 
-    print(f"New articles added: {len(new_articles)}")
-    print(f"Total articles in DB: {len(existing_articles) + len(new_articles)}")
+    logging.info(f"New articles added: {len(new_articles)}")
+    logging.info(f"Total articles in DB: {len(existing_articles) + len(new_articles)}")
+
+    # print(f"New articles added: {len(new_articles)}")
+    # print(f"Total articles in DB: {len(existing_articles) + len(new_articles)}")
 
 
 if __name__ == "__main__":

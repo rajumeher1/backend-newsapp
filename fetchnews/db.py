@@ -1,5 +1,5 @@
 # fetchnews/db.py
-
+import logging
 from pymongo import MongoClient
 from fetchnews.config import MONGO_URI, DB_NAME, COLLECTION_NAME
 
@@ -7,6 +7,8 @@ from fetchnews.config import MONGO_URI, DB_NAME, COLLECTION_NAME
 client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 collection = db[COLLECTION_NAME]
+
+logging.basicConfig(level=logging.INFO)
 
 def get_existing_articles():
     """
@@ -28,7 +30,8 @@ def save_articles(articles):
         articles (list of dicts)
     """
     if not articles:
-        print("No new articles to save.")
+        logging.info("No new articles to save.")
+        # print("No new articles to save.")
         return
 
     collection.insert_many(articles)
