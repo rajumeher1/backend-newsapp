@@ -22,7 +22,10 @@ RSS_FEEDS = {
     "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
     "ABP Live": "https://news.abplive.com/home/feed",
     "Times Now": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
-    "Assam Tribune": "https://assamtribune.com/feed",  
+    "Assam Tribune": "https://assamtribune.com/feed",
+    "Live Mint": "https://www.livemint.com/rss/markets",
+    "The Economic Times": "https://economictimes.indiatimes.com/news/rssfeeds/1715249553.cms",
+
 }
 
 # HTTP headers for requests
