@@ -222,15 +222,15 @@ class LazySeq2SeqModel:
 # Summarizer (BART CNN)
 # =========================================================
 class Summarizer(LazySeq2SeqModel):
-    # _model_name = "facebook/bart-large-cnn"
-    _model = "sshleifer/distilbart-cnn-12-6"
+    _model_name = "facebook/bart-large-cnn"
+    # _model = "sshleifer/distilbart-cnn-12-6"
 
 
 # =========================================================
 # Paraphraser (T5-base, purpose-trained for paraphrasing)
 # =========================================================
 class Paraphraser(LazySeq2SeqModel):
-    _model_name = "humarin/chatgpt_paraphraser_on_T5_base"
+    _model_name = "google/flan-t5-base"
 
 
 # =========================================================
