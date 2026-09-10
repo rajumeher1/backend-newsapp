@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from db import collection
+import random
 
 app = FastAPI(title="News Fetcher API")
 
@@ -24,6 +25,7 @@ def fetch_news():
     """
     try:
         articles = list(collection.find().sort("createdAt", -1).limit(130))
+        random.shuffle(articles)
         for article in articles:
             article["_id"] = str(article["_id"])
         return articles
