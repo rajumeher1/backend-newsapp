@@ -17,7 +17,6 @@ COLLECTION_NAME = os.getenv("COLLECTION_NAME", "articles")
 RSS_FEEDS = {
     "Times of India": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
     "Hindustan Times": "https://www.hindustantimes.com/feeds/rss/latest/rssfeed.xml",
-    "The Tribune": "https://publish.tribuneindia.com/newscategory/top-headlines/feed/",
     "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
     "ABP Live": "https://news.abplive.com/home/feed",
     "Assam Tribune": "https://assamtribune.com/feed",
