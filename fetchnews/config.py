@@ -17,14 +17,14 @@ COLLECTION_NAME = os.getenv("COLLECTION_NAME", "articles")
 RSS_FEEDS = {
     "Times of India": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
     "Hindustan Times": "https://www.hindustantimes.com/feeds/rss/latest/rssfeed.xml",
-    "Indian Express": "https://indianexpress.com/feed/",
     "The Tribune": "https://publish.tribuneindia.com/newscategory/top-headlines/feed/",
     "The Hindu": "https://www.thehindu.com/news/national/feeder/default.rss",
     "ABP Live": "https://news.abplive.com/home/feed",
-    "Times Now": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
     "Assam Tribune": "https://assamtribune.com/feed",
     "Live Mint": "https://www.livemint.com/rss/markets",
     "The Economic Times": "https://economictimes.indiatimes.com/news/rssfeeds/1715249553.cms",
+    "The Hindu Business Line": "https://www.thehindubusinessline.com/feeder/default.rss",
+    "Business Standard": "https://www.business-standard.com/rss/home_page_top_stories.rss"
 
 }
 

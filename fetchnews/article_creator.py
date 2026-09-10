@@ -16,6 +16,12 @@ from fetchnews.embeddings import (
 
 logging.basicConfig(level=logging.INFO)
 
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
+logging.getLogger("sentence_transformers").setLevel(logging.WARNING)
+logging.getLogger("transformers").setLevel(logging.WARNING)
+
+
 def process_item(item, source, seen_links, existing_embeddings):
 
     link = item.get("link")

@@ -10,6 +10,7 @@ from fetchnews.models import Summarizer
 
 logging.basicConfig(level=logging.INFO)
 
+
 def summarizer(url: str):
     try:
         response = requests.get(url, headers=HEADERS, timeout=20)
