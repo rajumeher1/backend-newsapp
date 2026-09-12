@@ -54,7 +54,8 @@ def process_item(item, source, seen_links, existing_embeddings):
         # 4️⃣ HEAVY NLP PIPELINE STARTS HERE
         # -----------------------------
 
-        new_title = paraphraser(title)
+        # new_title = paraphraser(title)
+        new_title = title
 
         if not new_title or new_title in ["No title", "Title unavailable"]:
             return None

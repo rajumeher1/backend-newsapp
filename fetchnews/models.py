@@ -223,7 +223,6 @@ class LazySeq2SeqModel:
 # =========================================================
 class Summarizer(LazySeq2SeqModel):
     _model_name = "facebook/bart-large-cnn"
-    # _model_name = "sshleifer/distilbart-cnn-12-6"
 
 
 # =========================================================
@@ -231,7 +230,6 @@ class Summarizer(LazySeq2SeqModel):
 # =========================================================
 class Paraphraser(LazySeq2SeqModel):
     _model_name = "google/flan-t5-base"
-    # _model_name = "sshleifer/distilbart-cnn-12-6"
 
 
 # =========================================================
