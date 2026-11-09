@@ -23,7 +23,7 @@ RSS_FEEDS = {
     "Live Mint": "https://www.livemint.com/rss/markets",
     "The Economic Times": "https://economictimes.indiatimes.com/news/rssfeeds/1715249553.cms",
     "The Hindu Business Line": "https://www.thehindubusinessline.com/feeder/default.rss",
-    "Business Standard": "https://www.business-standard.com/rss/home_page_top_stories.rss"
+    "Business Standard": "https://www.business-standard.com/rss/home_page_top_stories.rss",
     "CNBC": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114"
 }
 
